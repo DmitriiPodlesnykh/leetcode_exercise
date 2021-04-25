@@ -2,7 +2,7 @@ package twodarrays;
 
 class FirstTriangleSolution {
 
-    fun prepare(matrix: Array<IntArray>): DiagonalTraverseSolution.TriangleData {
+    fun prepare(matrix: Array<IntArray>): FirstTriangleDataResponse {
         val lastXIndex = matrix[0].size
         val lastYIndex = matrix.size
         var result = IntArray(lastXIndex * lastYIndex)
@@ -27,6 +27,6 @@ class FirstTriangleSolution {
             }
             isStartFromTop = !isStartFromTop
         }
-        return DiagonalTraverseSolution.TriangleData(isStartFromTop, result, resultNextElementIndex);
+        return FirstTriangleDataResponse(isStartFromTop, result, resultNextElementIndex);
     }
 }
