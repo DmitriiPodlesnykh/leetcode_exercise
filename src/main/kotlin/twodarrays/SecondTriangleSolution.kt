@@ -9,20 +9,24 @@ class SecondTriangleSolution {
         var resultNextElementIndex = firstTriangleResult.resultNextElementIndex
         val result = firstTriangleResult.result
 
-        for (i in lastYIndex downTo 2) {
+        for (currentDiagonalIndex in lastXIndex-1 downTo 1) {
             if (isStartFromTop) {
-                var j = 1
-                while (j <= lastXIndex-1) {
-                    result[resultNextElementIndex] = matrix[lastYIndex + j - i][lastXIndex-j]
+                var currentPositionInDiagonalIndex = 0
+                var y = 0;
+                while (y < currentDiagonalIndex) {
+                    result[resultNextElementIndex] = matrix[lastXIndex - currentDiagonalIndex + y][lastXIndex-currentPositionInDiagonalIndex-1]
                     resultNextElementIndex++
-                    j++
+                    currentPositionInDiagonalIndex++
+                    y++
                 }
             } else {
-                var j = 1
-                while (j < lastXIndex-1 ) {
-                    result[resultNextElementIndex] = matrix[i][lastXIndex - j]
+                var currentPositionInDiagonalIndex = currentDiagonalIndex
+                var y = 1;
+                while (currentPositionInDiagonalIndex > 0 ) {
+                    result[resultNextElementIndex] = matrix[lastYIndex-y][lastYIndex - currentPositionInDiagonalIndex]
                     resultNextElementIndex++
-                    j++
+                    currentPositionInDiagonalIndex--
+                    y++
                 }
             }
             isStartFromTop = !isStartFromTop

@@ -19,7 +19,7 @@ internal class SecondTriangleSolutionTest {
         val fistTriangleDataResponse: FirstTriangleDataResponse =
             prepareFirstTriangleDataResponse(isStartFromTop, request, resultNextIndexedValue)
 
-        val actualResult: IntArray = sut.prepare(fistTriangleDataResponse, request);
+        val actualResult: IntArray = sut.prepare(fistTriangleDataResponse, request)
 
         assertArrayEquals(intArrayOf(0, 0, 0, 0, 0, 0, 6, 8, 9), actualResult)
     }
@@ -36,7 +36,7 @@ internal class SecondTriangleSolutionTest {
         val fistTriangleDataResponse: FirstTriangleDataResponse =
             prepareFirstTriangleDataResponse(isStartFromTop, request, resultNextIndexedValue)
 
-        val actualResult: IntArray = sut.prepare(fistTriangleDataResponse, request);
+        val actualResult: IntArray = sut.prepare(fistTriangleDataResponse, request)
 
         assertArrayEquals(intArrayOf(0, 0, 0, 4), actualResult)
     }
@@ -54,12 +54,12 @@ internal class SecondTriangleSolutionTest {
         val resultArray =
             intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 14, 18, 22, 23, 19, 15, 20, 24, 25)
 
-        val resultNextIndexedValue = 16
+        val resultNextIndexedValue = 15
         val isStartFromTop = true
         val fistTriangleDataResponse: FirstTriangleDataResponse =
             prepareFirstTriangleDataResponse(isStartFromTop, request, resultNextIndexedValue)
 
-        val actualResult: IntArray = sut.prepare(fistTriangleDataResponse, request);
+        val actualResult: IntArray = sut.prepare(fistTriangleDataResponse, request)
 
         assertArrayEquals(resultArray, actualResult)
     }
