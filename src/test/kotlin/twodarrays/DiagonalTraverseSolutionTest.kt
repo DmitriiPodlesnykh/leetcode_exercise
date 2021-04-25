@@ -83,7 +83,27 @@ internal class DiagonalTraverseSolutionTest {
 
         assertArrayEquals(
             intArrayOf(1, 2, 5, 9, 6, 3, 4, 7, 10, 13, 14, 11, 8, 12, 15, 16),
-            sut.findDiagonalOrder(request))
+            sut.findDiagonalOrder(request)
+        )
+    }
+
+    @Test
+    fun findDiagonalOrder_5x5_returnCorrectArray() {
+        val request: Array<IntArray> = arrayOf(
+            intArrayOf(1, 2, 3, 4, 5),
+            intArrayOf(6, 7, 8, 9, 10),
+            intArrayOf(11, 12, 13, 14, 15),
+            intArrayOf(16, 17, 18, 19, 20),
+            intArrayOf(21, 22, 23, 24, 25)
+        )
+
+        val resultArray =
+            intArrayOf(1, 2, 6, 11, 7, 3, 4, 8, 12, 16, 21, 17, 13, 9, 5, 10, 14, 18, 22, 23, 19, 15, 20, 24, 25)
+
+        assertArrayEquals(
+            resultArray,
+            sut.findDiagonalOrder(request)
+        )
     }
 
 }

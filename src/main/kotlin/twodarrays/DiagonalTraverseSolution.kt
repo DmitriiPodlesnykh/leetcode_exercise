@@ -19,6 +19,8 @@ package twodarrays
  */
 class DiagonalTraverseSolution {
 
+    data class TriangleData(val isStartFromTop : Boolean, var result: IntArray, var resultNextElementIndex: Int)
+
     fun findDiagonalOrder(matrix: Array<IntArray>): IntArray {
         if (matrix.isEmpty()) {
             return intArrayOf()
@@ -29,28 +31,12 @@ class DiagonalTraverseSolution {
     private fun findDiagonalOrderFromNonEmptyMatrix(matrix: Array<IntArray>): IntArray {
         val lastXIndex = matrix[0].size
         val lastYIndex = matrix.size
-        val result = IntArray(lastXIndex * lastYIndex)
 
-        var isStartFromTop = false
-        var resultNextElementIndex = 0
-        for (currentDiagonalIndex in 0 until lastYIndex) {
-            if (isStartFromTop) {
-                var currentPositionInDiagonalIndex = 0
-                while (currentPositionInDiagonalIndex <= currentDiagonalIndex) {
-                    result[resultNextElementIndex] = matrix[currentDiagonalIndex + currentPositionInDiagonalIndex - 1][currentDiagonalIndex - currentPositionInDiagonalIndex]
-                    resultNextElementIndex++
-                    currentPositionInDiagonalIndex++
-                }
-            } else {
-                var j = currentDiagonalIndex
-                while (j >= 0) {
-                    result[resultNextElementIndex] = matrix[j][currentDiagonalIndex - j]
-                    resultNextElementIndex++
-                    j--
-                }
-            }
-            isStartFromTop = !isStartFromTop
-        }
+        val firstTriangleResult: TriangleData = FirstTriangleSolution().prepare(matrix)
+        var isStartFromTop = firstTriangleResult.isStartFromTop;
+        var resultNextElementIndex = firstTriangleResult.resultNextElementIndex
+        val result = firstTriangleResult.result
+
         for (i in lastYIndex downTo 2) {
             if (isStartFromTop) {
                 var j = 1
@@ -60,11 +46,11 @@ class DiagonalTraverseSolution {
                     j++
                 }
             } else {
-                var j = i
-                while (j > 1) {
-                    result[resultNextElementIndex] = matrix[lastYIndex - i +1][lastXIndex - j +1]
+                var j = 1
+                while (j <= lastXIndex-1 ) {
+                    result[resultNextElementIndex] = matrix[i][lastXIndex - j]
                     resultNextElementIndex++
-                    j--
+                    j++
                 }
             }
             isStartFromTop = !isStartFromTop
